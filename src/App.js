@@ -19,7 +19,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Profile}/>
             <Route exact path='/profile' component={Profile}/>
-            <Route exact path='/messages' component={Dialogs}/>
+            <Route path='/messages' component={Dialogs}/>
             <Route exact path='/news' component={News}/>
             <Route exact path='/music' component={Music}/>
             <Route exact path='/settings' component={Settings}/>
