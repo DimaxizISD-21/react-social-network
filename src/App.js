@@ -9,7 +9,7 @@ import Settings from "./components/Settings/Settings";
 
 import './App.css';
 
-function App() {
+function App({ store }) {
   return (
     <Router>
       <div className="app-wrapper">
@@ -17,9 +17,9 @@ function App() {
         <Navbar/>
         <div className="app-wrapper-content">
           <Switch>
-            <Route exact path='/' component={Profile}/>
-            <Route exact path='/profile' component={Profile}/>
-            <Route path='/messages' component={Dialogs}/>
+            <Route exact path='/' render={() => <Profile posts={store.posts} />}/>
+            <Route exact path='/profile' render={() => <Profile posts={store.posts} />}/>
+            <Route path='/messages' render={() => <Dialogs dialogs={store.dialogs} messages={store.messages}/>}/>
             <Route exact path='/news' component={News}/>
             <Route exact path='/music' component={Music}/>
             <Route exact path='/settings' component={Settings}/>
