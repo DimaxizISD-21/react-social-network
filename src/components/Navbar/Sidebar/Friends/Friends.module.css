@@ -1,0 +1,19 @@
+.friendsAvatar {
+    width: 40px;
+    height: 40px;
+}
+
+.friendItem {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}

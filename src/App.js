@@ -9,17 +9,17 @@ import Settings from "./components/Settings/Settings";
 
 import './App.css';
 
-function App({ store }) {
+function App({ state }) {
   return (
     <Router>
       <div className="app-wrapper">
         <Header/>
-        <Navbar/>
+        <Navbar state={state.sidebarFriends} />
         <div className="app-wrapper-content">
           <Switch>
-            <Route exact path='/' render={() => <Profile posts={store.posts} />}/>
-            <Route exact path='/profile' render={() => <Profile posts={store.posts} />}/>
-            <Route path='/messages' render={() => <Dialogs dialogs={store.dialogs} messages={store.messages}/>}/>
+            <Route exact path='/' render={() => <Profile state={state.profilePage}/>}/>
+            <Route exact path='/profile' render={() => <Profile state={state.profilePage}/>}/>
+            <Route path='/messages' render={() => <Dialogs state={state.dialogsPage}/>}/>
             <Route exact path='/news' component={News}/>
             <Route exact path='/music' component={Music}/>
             <Route exact path='/settings' component={Settings}/>

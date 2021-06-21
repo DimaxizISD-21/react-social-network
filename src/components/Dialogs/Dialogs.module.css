@@ -5,20 +5,53 @@
 
 .dialogsItems {
     padding: 10px;
+    /*background: #fff;*/
 }
 
 .dialog {
 
 }
 
+.dialog a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000;
+}
+
+.dialogAvatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
 .messagesItems {
     padding: 10px;
+    background: #dcfbfc;
 }
 
 .message {
+    width: 150px;
+    background: #fff;
+    border-radius: 0px 50px 50px 50px;
+    padding: 10px;
+    margin-top: 10px;
+}
 
+.message:nth-child(2n) {
+    background: #546eff;
+    border-radius: 50px 0px 50px 50px;
+    margin-left: 700px;
+    color: #fff;
+    text-align: right;
 }
 
 .active {
     color: steelblue;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    background: #E1E2E1;
+    margin-top: 5px;
 }
