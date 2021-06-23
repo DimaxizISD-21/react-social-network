@@ -1,9 +1,13 @@
 .dialogs {
     display: grid;
+    grid-template-areas:
+        'dialogs messages'
+        'dialogs inputMsg';
     grid-template-columns: 2fr 10fr;
 }
 
 .dialogsItems {
+    grid-area: dialogs;
     padding: 10px;
     /*background: #fff;*/
 }
@@ -25,7 +29,8 @@
 }
 
 .messagesItems {
-    padding: 10px;
+    grid-area: messages;
+    padding: 20px;
     background: #dcfbfc;
 }
 
@@ -34,7 +39,7 @@
     background: #fff;
     border-radius: 0px 50px 50px 50px;
     padding: 10px;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 .message:nth-child(2n) {

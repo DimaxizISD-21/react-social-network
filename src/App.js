@@ -9,7 +9,7 @@ import Settings from "./components/Settings/Settings";
 
 import './App.css';
 
-function App({ state }) {
+function App({ state, addPost, updateNewPostText }) {
   return (
     <Router>
       <div className="app-wrapper">
@@ -17,8 +17,8 @@ function App({ state }) {
         <Navbar state={state.sidebarFriends} />
         <div className="app-wrapper-content">
           <Switch>
-            <Route exact path='/' render={() => <Profile state={state.profilePage}/>}/>
-            <Route exact path='/profile' render={() => <Profile state={state.profilePage}/>}/>
+            <Route exact path='/' render={() => <Profile state={state.profilePage} addPost={addPost} updateNewPostText={updateNewPostText}/>}/>
+            <Route exact path='/profile' render={() => <Profile state={state.profilePage} addPost={addPost} updateNewPostText={updateNewPostText}/>}/>}/>
             <Route path='/messages' render={() => <Dialogs state={state.dialogsPage}/>}/>
             <Route exact path='/news' component={News}/>
             <Route exact path='/music' component={Music}/>

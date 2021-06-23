@@ -1,5 +1,6 @@
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
+import MessageInput from "./MessageInput/MessageInput";
 
 import s from './Dialogs.module.css'
 
@@ -24,6 +25,7 @@ const Dialogs = ({ state }) => {
           ))
         }
       </div>
+        <MessageInput/>
     </div>
   );
 }

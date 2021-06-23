@@ -1,0 +1,23 @@
+.inputMessage {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #fff;
+}
+
+.inputMsg {
+    width: 100%;
+    border: 2px solid gray;
+    font-size: 15px;
+}
+
+.btnSend {
+    height: 35px;
+    background: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 0 20px;
+}

@@ -8,8 +8,8 @@ const Friends = ({friends}) => {
       <h4>Friends</h4>
       <div className={s.wrapper}>
         {
-          friends.map(friend => (
-            <FriendItem avatar={friend.avatar} name={friend.name}/>
+          friends.map((friend, i) => (
+            <FriendItem key={i} avatar={friend.avatar} name={friend.name}/>
           ))
         }
       </div>

@@ -1,17 +1,30 @@
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
+import {createRef, useRef} from "react";
 
-const MyPosts = ({ postData }) => {
+const MyPosts = ({ postData, addPost, newPostText, updateNewPostText }) => {
+  const newPostElement = useRef();
+
+  const onAddingPost = () => {
+    addPost();
+    updateNewPostText('');
+  };
+
+  const onPostChange = () => {
+    let text = newPostElement.current.value;
+    updateNewPostText(text);
+  };
+
   return (
     <div className={s.postsBlock}>
       <div>
         <h3>My posts</h3>
         <div>
           <div>
-            <textarea></textarea>
+            <textarea onChange={onPostChange} value={newPostText} ref={newPostElement} />
           </div>
           <div>
-            <button>Add post</button>
+            <button onClick={onAddingPost}>Add post</button>
           </div>
         </div>
       </div>
