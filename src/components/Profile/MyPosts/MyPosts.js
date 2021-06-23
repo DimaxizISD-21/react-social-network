@@ -7,7 +7,6 @@ const MyPosts = ({ postData, addPost, newPostText, updateNewPostText }) => {
 
   const onAddingPost = () => {
     addPost();
-    updateNewPostText('');
   };
 
   const onPostChange = () => {
