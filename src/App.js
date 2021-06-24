@@ -9,17 +9,17 @@ import Settings from "./components/Settings/Settings";
 
 import './App.css';
 
-function App({ state, addPost, updateNewPostText }) {
+function App({ state, store }) {
   return (
     <div className="app-wrapper">
       <Header/>
       <Navbar state={state.sidebarFriends}/>
       <div className="app-wrapper-content">
         <Switch>
-          <Route exact path='/' render={() => <Profile state={state.profilePage} addPost={addPost}
-                                                       updateNewPostText={updateNewPostText}/>}/>
-          <Route exact path='/profile' render={() => <Profile state={state.profilePage} addPost={addPost}
-                                                              updateNewPostText={updateNewPostText}/>}/>}/>
+          <Route exact path='/' render={() => <Profile state={state.profilePage} addPost={store.addPost}
+                                                       updateNewPostText={store.updateNewPostText}/>}/>
+          <Route exact path='/profile' render={() => <Profile state={state.profilePage} addPost={store.addPost}
+                                                              updateNewPostText={store.updateNewPostText}/>}/>}/>
           <Route path='/messages' render={() => <Dialogs state={state.dialogsPage}/>}/>
           <Route exact path='/news' component={News}/>
           <Route exact path='/music' component={Music}/>

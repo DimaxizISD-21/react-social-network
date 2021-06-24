@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom';
-import state, {addPost, subscribe, updateNewPostText} from "./state"
+import Store from "./store";
+
+const store = new Store();
+const state = store.getState();
 
 const rerender = () => {
   ReactDOM.render(
     <React.StrictMode>
       <Router>
-        <App state={state} addPost={addPost} updateNewPostText={updateNewPostText} />
+        <App state={state} store={store} />
       </Router>
     </React.StrictMode>,
     document.getElementById('root')
@@ -18,4 +21,4 @@ const rerender = () => {
 
 rerender();
 
-subscribe(rerender);
+store.subscribe(rerender);
