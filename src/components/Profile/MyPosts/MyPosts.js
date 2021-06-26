@@ -1,17 +1,18 @@
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {createRef, useRef} from "react";
+import { addPost, updateNewPostText } from '../../../actions';
 
 const MyPosts = ({ postData, dispatch, newPostText }) => {
   const newPostElement = useRef();
 
   const onAddingPost = () => {
-    dispatch({type: 'ADD-POST'});
+    dispatch(addPost());
   };
 
   const onPostChange = () => {
-    let text = newPostElement.current.value
-    dispatch({type: 'UPDATE_NEW_POST_TEXT', newText: text});
+    let text = newPostElement.current.value;
+    dispatch(updateNewPostText(text));
   };
 
   return (
