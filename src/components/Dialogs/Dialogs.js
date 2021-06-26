@@ -4,7 +4,7 @@ import MessageInput from "./MessageInput/MessageInput";
 
 import s from './Dialogs.module.css'
 
-const Dialogs = ({ state }) => {
+const Dialogs = ({ state, dispatch }) => {
 
   const { dialogs, messages } = state;
 
@@ -25,7 +25,7 @@ const Dialogs = ({ state }) => {
           ))
         }
       </div>
-        <MessageInput/>
+        <MessageInput bodyText={state.newMessageBody} dispatch={dispatch} />
     </div>
   );
 }

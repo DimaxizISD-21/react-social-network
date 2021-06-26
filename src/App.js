@@ -18,7 +18,7 @@ function App({ state, dispatch }) {
         <Switch>
           <Route exact path='/' render={() => <Profile state={state.profilePage} dispatch={dispatch}/>}/>
           <Route exact path='/profile' render={() => <Profile state={state.profilePage} dispatch={dispatch}/>}/>
-          <Route path='/messages' render={() => <Dialogs state={state.dialogsPage}/>}/>
+          <Route path='/messages' render={() => <Dialogs state={state.dialogsPage} dispatch={dispatch} />}/>
           <Route exact path='/news' component={News}/>
           <Route exact path='/music' component={Music}/>
           <Route exact path='/settings' component={Settings}/>

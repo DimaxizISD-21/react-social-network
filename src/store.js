@@ -30,7 +30,8 @@ export default class Store {
         {id: 2, msg: 'How are you?'},
         {id: 3, msg: 'I`m fine thanks!'},
         {id: 4, msg: 'How is your day?'},
-      ]
+      ],
+      newMessageBody: ''
     },
     sidebarFriends: [
       {
@@ -76,6 +77,18 @@ export default class Store {
       this.rerender();
     } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
       this.#state.profilePage.newPostText = action.newText;
+      this.rerender();
+    } else if (action.type === 'UPDATE_NEW_MESSAGE_BODY') {
+      this.#state.dialogsPage.newMessageBody = action.body;
+      this.rerender();
+    } else if (action.type === 'SEND_MESSAGE') {
+      const message = {
+        id: 5,
+        msg: this.#state.dialogsPage.newMessageBody
+      };
+
+      this.#state.dialogsPage.messages.push(message);
+      this.#state.dialogsPage.newMessageBody = '';
       this.rerender();
     }
   }
