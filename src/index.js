@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom';
-import Store from "./store";
+import store from "./redux/redux-store";
 
-const store = new Store();
 const state = store.getState();
 
 const rerender = () => {
