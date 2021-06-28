@@ -1,3 +1,5 @@
+import {dialogsReducer, profileReducer} from "./reducers";
+
 export default class Store {
   #state = {
     profilePage: {
@@ -65,32 +67,12 @@ export default class Store {
   }
 
   dispatch = (action) => {
-    if (action.type === 'ADD-POST') {
-      const newPost = {
-        id: 3,
-        msg: this.#state.profilePage.newPostText,
-        likesCount: 0
-      };
+    const profilePage = this.#state.profilePage;
+    const dialogsPage = this.#state.dialogsPage;
 
-      this.#state.profilePage.posts.push(newPost);
-      this.#state.profilePage.newPostText = '';
-      this.rerender();
-    } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
-      this.#state.profilePage.newPostText = action.newText;
-      this.rerender();
-    } else if (action.type === 'UPDATE_NEW_MESSAGE_BODY') {
-      this.#state.dialogsPage.newMessageBody = action.body;
-      this.rerender();
-    } else if (action.type === 'SEND_MESSAGE') {
-      const message = {
-        id: 5,
-        msg: this.#state.dialogsPage.newMessageBody
-      };
-
-      this.#state.dialogsPage.messages.push(message);
-      this.#state.dialogsPage.newMessageBody = '';
-      this.rerender();
-    }
+    this.#state.profilePage = profileReducer(profilePage, action);
+    this.#state.dialogsPage = dialogsReducer(dialogsPage, action);
+    this.rerender();
   }
 
 };
