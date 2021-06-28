@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./Friends.module.css";
 import FriendItem from "./FriendItem/FriendItem";
+import {connect} from "react-redux";
 
 const Friends = ({friends}) => {
   return (
@@ -17,4 +18,10 @@ const Friends = ({friends}) => {
   );
 };
 
-export default Friends;
+const mapStateToProps = (state) => {
+  return {
+    friends: state.sidebarFriends
+  }
+};
+
+export default connect(mapStateToProps)(Friends);

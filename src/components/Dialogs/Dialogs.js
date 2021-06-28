@@ -1,13 +1,11 @@
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 import MessageInput from "./MessageInput/MessageInput";
+import {connect} from "react-redux";
 
 import s from './Dialogs.module.css'
 
-const Dialogs = ({ state, dispatch }) => {
-
-  const { dialogs, messages } = state;
-
+const Dialogs = ({ dialogs, messages }) => {
   return (
     <div className={s.dialogs}>
       {/*<b>Dialogs</b>*/}
@@ -25,9 +23,16 @@ const Dialogs = ({ state, dispatch }) => {
           ))
         }
       </div>
-        <MessageInput bodyText={state.newMessageBody} dispatch={dispatch} />
+        <MessageInput />
     </div>
   );
 }
 
-export default Dialogs;
+const mapStateToProps = (state) => {
+  return {
+    dialogs: state.dialogsPage.dialogs,
+    messages: state.dialogsPage.messages
+  }
+};
+
+export default connect(mapStateToProps)(Dialogs);

@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar/Sidebar";
 
 import s from './Navbar.module.css';
 
-const Navbar = ({ state }) => {
+const Navbar = () => {
   return (
     <nav className={s.nav}>
       <div className={s.item}>
@@ -22,7 +22,7 @@ const Navbar = ({ state }) => {
         <NavLink to='/settings' activeClassName={s.activeLink}>Settings</NavLink>
       </div>
 
-      <Sidebar state={state}/>
+      <Sidebar/>
 
     </nav>
   );

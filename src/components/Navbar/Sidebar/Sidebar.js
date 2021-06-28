@@ -1,10 +1,10 @@
 import s from './Sidebar.module.css'
 import Friends from "./Friends/Friends";
 
-const Sidebar = ({state}) => {
+const Sidebar = () => {
   return (
     <div className={s.sidebar}>
-      <Friends friends={state} />
+      <Friends />
     </div>
   );
 };

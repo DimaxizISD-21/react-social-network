@@ -4,8 +4,11 @@ import s from "../Friends.module.css";
 const FriendItem = ({avatar, name}) => {
   return (
     <div className={s.friendItem}>
-      <img className={s.friendsAvatar}
-           src={avatar}/>
+      <img
+        className={s.friendsAvatar}
+        src={avatar}
+        alt='friend'
+      />
       <div className="friendName">{name}</div>
     </div>
   );

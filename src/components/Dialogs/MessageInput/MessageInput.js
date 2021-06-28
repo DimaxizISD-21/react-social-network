@@ -1,25 +1,22 @@
-import {createRef, useRef} from "react";
 import {sendMessage, updateNewMessageBody} from "../../../actions";
+import {connect} from "react-redux";
 
 import s from './MessageInput.module.css';
 
-const MessageInput = ({ dispatch, bodyText }) => {
-  // const msgInputElement = useRef();
+const MessageInput = ({ bodyText, sendMessage, updateNewMessageBody }) => {
 
   const onSendMessage = () => {
-    dispatch(sendMessage());
-    // alert(`Sending: ${msg}`)
+    sendMessage();
   };
 
   const onBodyChange = (e) => {
-    const body = e.target.value; //msgInputElement.current.value;
-    dispatch(updateNewMessageBody(body));
+    const body = e.target.value;
+    updateNewMessageBody(body);
   };
 
   return (
     <div className={s.inputMessage}>
       <textarea
-        // ref={msgInputElement}
         className={s.inputMsg}
         placeholder='Enter your message'
         value={bodyText}
@@ -30,4 +27,15 @@ const MessageInput = ({ dispatch, bodyText }) => {
   );
 };
 
-export default MessageInput;
+const mapStateToProps = (state) => {
+  return {
+    bodyText: state.dialogsPage.newMessageBody
+  }
+};
+
+const mapDispatchToProps = {
+  sendMessage,
+  updateNewMessageBody
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageInput);

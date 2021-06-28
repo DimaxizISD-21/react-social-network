@@ -6,7 +6,11 @@ const DialogItem = ({name, id, avatar}) => {
   return (
     <div className={`${s.dialog} ${s.active}`}>
       <div className={s.wrapper}>
-        <img className={s.dialogAvatar} src={avatar}/>
+        <img
+          className={s.dialogAvatar}
+          src={avatar}
+          alt='avatar'
+        />
         <NavLink to={`/messages/${id}`}>{name}</NavLink>
       </div>
     </div>

@@ -9,16 +9,16 @@ import Settings from "./components/Settings/Settings";
 
 import './App.css';
 
-function App({ state, dispatch }) {
+function App() {
   return (
     <div className="app-wrapper">
       <Header/>
-      <Navbar state={state.sidebarFriends}/>
+      <Navbar/>
       <div className="app-wrapper-content">
         <Switch>
-          <Route exact path='/' render={() => <Profile state={state.profilePage} dispatch={dispatch}/>}/>
-          <Route exact path='/profile' render={() => <Profile state={state.profilePage} dispatch={dispatch}/>}/>
-          <Route path='/messages' render={() => <Dialogs state={state.dialogsPage} dispatch={dispatch} />}/>
+          <Route exact path='/' render={() => <Profile />}/>
+          <Route exact path='/profile' render={() => <Profile />}/>
+          <Route path='/messages' render={() => <Dialogs />}/>
           <Route exact path='/news' component={News}/>
           <Route exact path='/music' component={Music}/>
           <Route exact path='/settings' component={Settings}/>

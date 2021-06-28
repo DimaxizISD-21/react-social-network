@@ -1,18 +1,18 @@
-import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {createRef, useRef} from "react";
 import { addPost, updateNewPostText } from '../../../actions';
+import {connect} from "react-redux";
 
-const MyPosts = ({ postData, dispatch, newPostText }) => {
-  const newPostElement = useRef();
+import s from './MyPosts.module.css';
+
+const MyPosts = ({ postData, newPostText, addPost, updateNewPostText }) => {
 
   const onAddingPost = () => {
-    dispatch(addPost());
+    addPost();
   };
 
-  const onPostChange = () => {
-    let text = newPostElement.current.value;
-    dispatch(updateNewPostText(text));
+  const onPostChange = (e) => {
+    let text = e.target.value;
+    updateNewPostText(text);
   };
 
   return (
@@ -21,7 +21,7 @@ const MyPosts = ({ postData, dispatch, newPostText }) => {
         <h3>My posts</h3>
         <div>
           <div>
-            <textarea onChange={onPostChange} value={newPostText} ref={newPostElement} />
+            <textarea onChange={onPostChange} value={newPostText} />
           </div>
           <div>
             <button onClick={onAddingPost}>Add post</button>
@@ -39,4 +39,16 @@ const MyPosts = ({ postData, dispatch, newPostText }) => {
   );
 }
 
-export default MyPosts;
+const mapStateToProps = (state) => {
+  return {
+    postData: state.profilePage.posts,
+    newPostText: state.profilePage.newPostText
+  }
+};
+
+const mapDispatchToProps = {
+  addPost,
+  updateNewPostText
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPosts);
