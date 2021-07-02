@@ -1,0 +1,30 @@
+.title {
+    color: #000;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.users {
+    padding: 10px;
+}
+
+.btnShowMore {
+    border: none;
+    width: 120px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 17px;
+    color: #fff;
+    background: cornflowerblue;
+    transition: 0.5s all;
+    cursor: pointer;
+}
+
+.btnShowMore:hover {
+    background: #4a86ee;
+}
+
+.btnWrapper {
+    display: flex;
+    justify-content: center;
+}

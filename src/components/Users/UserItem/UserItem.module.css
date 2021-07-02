@@ -1,0 +1,56 @@
+.userItem {
+    display: flex;
+    justify-content: flex-start;
+    margin: 25px 10px;
+}
+
+.userAvatar {
+    width: 80px;
+    height: 80px;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.userFullname {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.userDescription {
+    border: 2px solid gray;
+    border-radius: 10px;
+    min-width: 400px;
+    padding: 10px;
+}
+
+.userInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.userMood {
+    margin-top: 10px;
+}
+
+.followed {
+    border: none;
+    width: 100px;
+    height: 25px;
+    margin-top: 10px;
+    background: #198754;
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+.followed:hover {
+    background: #10613e;
+}
