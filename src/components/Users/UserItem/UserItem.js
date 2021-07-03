@@ -1,10 +1,10 @@
 import s from './UserItem.module.css'
 
-const UserItem = ({ userID, fullname, avatar, city, country, mood, followed, follow, unfollow }) => {
+const UserItem = ({ userID, name, avatar, city, country, status, followed, follow, unfollow }) => {
   return (
     <div className={s.userItem}>
       <div className={s.user}>
-        <img className={s.userAvatar} src={avatar} alt="user"/>
+        <img className={s.userAvatar} src={avatar != null ? avatar : 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png'} alt="user"/>
         {
           followed ?
             <button
@@ -20,10 +20,10 @@ const UserItem = ({ userID, fullname, avatar, city, country, mood, followed, fol
       </div>
       <div className={s.userDescription}>
         <div className={s.userInfo}>
-          <div className={s.userFullname}>{fullname}</div>
-          <div className={s.userLocation}>{country}, {city}</div>
+          <div className={s.userFullname}>{name}</div>
+          <div className={s.userLocation}>{'country, city'}</div>
         </div>
-        <div className={s.userMood}>{mood}</div>
+        <div className={s.userMood}>{status}</div>
       </div>
     </div>
   );
