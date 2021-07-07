@@ -16,6 +16,7 @@ const setTotalUsersCount = (totalUsersCount) => ({type: 'SET_TOTAL_USERS_COUNT',
 const setCurrentPage = (currentPage) => ({type: 'SET_CURRENT_PAGE', currentPage});
 const setNextPage = () => ({type: 'SET_NEXT_PAGE'});
 const setPrevPage = () => ({type: 'SET_PREV_PAGE'});
+const toogleFetching = (isFetching) => ({type: 'TOOGLE_FETCHING', isFetching});
 
 export {
   addPost,
@@ -28,5 +29,6 @@ export {
   setTotalUsersCount,
   setCurrentPage,
   setNextPage,
-  setPrevPage
+  setPrevPage,
+  toogleFetching
 }

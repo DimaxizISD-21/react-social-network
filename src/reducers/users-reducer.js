@@ -2,7 +2,8 @@ const initialState = {
   users: [],
   pageSize: 5,
   totalUsersCount: 0,
-  currentPage: 1
+  currentPage: 1,
+  isFetching: false
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -10,23 +11,11 @@ const usersReducer = (state = initialState, action) => {
     case 'FOLLOW':
       return {
         ...state,
-        // users: state.users.map(user => {
-        //   if (user.id === action.userID) {
-        //     return {...user, followed: true}
-        //   }
-        //   return user
-        // })
         users: state.users.map(user => user.id === action.userID ? {...user, followed: true} : user)
       }
     case 'UNFOLLOW':
       return {
         ...state,
-        // users: state.users.map(user => {
-        //   if (user.id === action.userID) {
-        //     return {...user, followed: false}
-        //   }
-        //   return user
-        // })
         users: state.users.map(user => user.id === action.userID ? {...user, followed: false} : user)
       }
 
@@ -54,6 +43,11 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         currentPage: state.currentPage === 1 ? state.currentPage = 1 : state.currentPage - 1
+      }
+    case 'TOOGLE_FETCHING':
+      return {
+        ...state,
+        isFetching: state.isFetching = action.isFetching
       }
     default:
       return state;

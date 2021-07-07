@@ -1,0 +1,9 @@
+.preloaderWrap {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.preloader {
+    width: 75px;
+}
