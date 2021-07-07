@@ -1,4 +1,4 @@
-import {follow, unfollow, setUsers} from '../../actions';
+import {follow, unfollow, setUsers, setTotalUsersCount, setCurrentPage, setNextPage, setPrevPage} from '../../actions';
 import {connect} from "react-redux";
 import UserItem from "./UserItem/UserItem";
 import axios from "axios";
@@ -6,54 +6,47 @@ import {useEffect} from "react";
 
 import s from './Users.module.css';
 
-const Users = ({users, follow, unfollow, setUsers}) => {
+const Users = (props) => {
+  const {
+    users,
+    follow,
+    unfollow,
+    setUsers,
+    totalUsersCount,
+    pageSize,
+    currentPage,
+    setCurrentPage,
+    setNextPage,
+    setPrevPage,
+    setTotalUsersCount
+  } = props;
 
   useEffect(() => {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users')
-      .then(response => setUsers(response.data.items))
-  }, [setUsers]);
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
+      .then(response => {
+        setUsers(response.data.items);
+        setTotalUsersCount(response.data.totalCount);
+      })
+  }, [setUsers, setTotalUsersCount, currentPage, pageSize]);
 
-  // if (users.length === 0) {
-  //   axios.get('https://social-network.samuraijs.com/api/1.0/users')
-  //     .then(response => setUsers(response.data.items))
-  //   // setUsers(
-  //   //   [
-  //   //     {
-  //   //       id: 1,
-  //   //       fullName: 'James T.',
-  //   //       avatarURL: 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png',
-  //   //       location: {
-  //   //         city: 'Brooklyn',
-  //   //         country: 'United States'
-  //   //       },
-  //   //       mood: 'I am looking for a Job right now...',
-  //   //       followed: true
-  //   //     },
-  //   //     {
-  //   //       id: 2,
-  //   //       fullName: 'Andrey S.',
-  //   //       avatarURL: 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png',
-  //   //       location: {
-  //   //         city: 'Kiev',
-  //   //         country: 'Ukraine'
-  //   //       },
-  //   //       mood: 'Today it a good day!',
-  //   //       followed: false
-  //   //     },
-  //   //     {
-  //   //       id: 3,
-  //   //       fullName: 'Max D.',
-  //   //       avatarURL: 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png',
-  //   //       location: {
-  //   //         city: 'Kharkiv',
-  //   //         country: 'Ukraine'
-  //   //       },
-  //   //       mood: 'I am looking for a new friends!',
-  //   //       followed: false
-  //   //     }
-  //   //   ]
-  //   // );
-  // }
+  let pagesCount = Math.ceil(totalUsersCount / pageSize);
+  const pages = [];
+
+  if (pagesCount > 10) {
+    if (currentPage > 5) {
+      for (let i = currentPage - 5; i <= currentPage + 5; i++) {
+        pages.push(i);
+      }
+    } else {
+      for (let i = 1; i <= 10; i++) {
+        pages.push(i);
+      }
+    }
+  } else {
+    for (let i = 1; i < pagesCount; i++) {
+      pages.push(i)
+    }
+  }
 
   return (
     <div className={s.users}>
@@ -77,20 +70,40 @@ const Users = ({users, follow, unfollow, setUsers}) => {
       <div className={s.btnWrapper}>
         <button className={s.btnShowMore}>Show more</button>
       </div>
+      <div className={s.pagination}>
+        <button className={s.paginationBtn} onClick={() => setPrevPage()}>{'<<'}</button>
+        {
+          pages.map((page, i) => (
+            <span
+              key={i}
+              className={currentPage === page ? s.active : ''}
+              onClick={() => setCurrentPage(page)}
+            >{page}</span>
+          ))
+        }
+        <button className={s.paginationBtn} onClick={() => setNextPage()}>{'>>'}</button>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users
+    users: state.usersPage.users,
+    pageSize: state.usersPage.pageSize,
+    totalUsersCount: state.usersPage.totalUsersCount,
+    currentPage: state.usersPage.currentPage
   }
 };
 
 const mapDispatchToProps = {
   follow,
   unfollow,
-  setUsers
+  setUsers,
+  setTotalUsersCount,
+  setCurrentPage,
+  setNextPage,
+  setPrevPage
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);
