@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import axios from "axios";
 import {connect} from "react-redux";
 import ProfileView from "./ProfileView";
@@ -7,13 +7,13 @@ import {withRouter} from 'react-router-dom'
 
 
 const Profile = ({ userProfile, setUserProfile, match }) => {
-  let userID = match.params.userId;
+  let userID =  useRef(match.params.userId);
 
   useEffect(() => {
-    if (!userID) {
-      userID = 2
+    if (!userID.current) {
+      userID.current = 2;
     }
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID.current}`)
       .then(response => setUserProfile(response.data))
   }, [setUserProfile]);
 
