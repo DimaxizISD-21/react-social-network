@@ -4,6 +4,7 @@ const initialState = {
     {id: 2, msg: 'It`s my first post', likesCount: 9}
   ],
   newPostText: 'Something',
+  userProfile: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         newPostText: action.newText
+      }
+    case 'SET_USER_PROFILE':
+      return {
+        ...state,
+        userProfile: action.userProfile
       }
     default:
       return state;

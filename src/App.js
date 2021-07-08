@@ -18,7 +18,7 @@ function App() {
       <div className="app-wrapper-content">
         <Switch>
           <Route exact path='/' render={() => <Profile />}/>
-          <Route exact path='/profile' render={() => <Profile />}/>
+          <Route path='/profile/:userId?' render={() => <Profile />}/>
           <Route path='/messages' render={() => <Dialogs />}/>
           <Route exact path='/users' component={Users} />
           <Route exact path='/news' component={News}/>

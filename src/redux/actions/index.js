@@ -1,6 +1,7 @@
 // Profile
 const addPost = () => ({type: 'ADD-POST'});
 const updateNewPostText = (text) => ({type: 'UPDATE_NEW_POST_TEXT', newText: text});
+const setUserProfile = (userProfile) => ({type: 'SET_USER_PROFILE', userProfile});
 
 // Messages(Dialogs)
 const sendMessage = () => ({type: 'SEND_MESSAGE'});
@@ -21,6 +22,7 @@ const toogleFetching = (isFetching) => ({type: 'TOOGLE_FETCHING', isFetching});
 export {
   addPost,
   updateNewPostText,
+  setUserProfile,
   sendMessage,
   updateNewMessageBody,
   follow,
