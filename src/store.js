@@ -1,4 +1,4 @@
-import {dialogsReducer, profileReducer} from "./reducers";
+import {dialogsReducer, profileReducer} from "./redux/reducers";
 
 export default class Store {
   #state = {

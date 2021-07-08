@@ -1,5 +1,5 @@
 import Post from './Post/Post';
-import { addPost, updateNewPostText } from '../../../actions';
+import { addPost, updateNewPostText } from '../../../redux/actions';
 import {connect} from "react-redux";
 
 import s from './MyPosts.module.css';

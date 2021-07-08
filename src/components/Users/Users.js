@@ -7,7 +7,7 @@ import {
   setNextPage,
   setPrevPage,
   toogleFetching
-} from '../../actions';
+} from '../../redux/actions';
 import {connect} from "react-redux";
 import axios from "axios";
 import {useEffect} from "react";

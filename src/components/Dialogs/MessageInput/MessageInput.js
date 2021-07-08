@@ -1,4 +1,4 @@
-import {sendMessage, updateNewMessageBody} from "../../../actions";
+import {sendMessage, updateNewMessageBody} from "../../../redux/actions";
 import {connect} from "react-redux";
 
 import s from './MessageInput.module.css';
