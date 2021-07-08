@@ -12,7 +12,7 @@ import {connect} from "react-redux";
 import axios from "axios";
 import {useEffect} from "react";
 import UsersView from "./UsersView";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 
 
 const Users = (props) => {

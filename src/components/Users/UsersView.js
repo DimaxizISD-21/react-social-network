@@ -1,5 +1,5 @@
 import UserItem from "./UserItem/UserItem";
-import Pagination from "./Pagination/Pagination";
+import Pagination from "../common/Pagination/Pagination";
 
 import s from "./Users.module.css";
 
