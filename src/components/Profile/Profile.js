@@ -13,7 +13,9 @@ const Profile = ({ userProfile, setUserProfile, match }) => {
     if (!userID.current) {
       userID.current = 2;
     }
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID.current}`)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID.current}`, {
+      withCredentials: true
+    })
       .then(response => setUserProfile(response.data))
   }, [setUserProfile]);
 
