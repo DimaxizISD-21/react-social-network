@@ -1,36 +1,25 @@
+import * as types from '../actionTypes';
+
 // Profile
-const addPost = () => ({type: 'ADD-POST'});
-const updateNewPostText = (text) => ({type: 'UPDATE_NEW_POST_TEXT', newText: text});
-const setUserProfile = (userProfile) => ({type: 'SET_USER_PROFILE', userProfile});
+export const addPost = () => ({type: types.ADD_POST});
+export const updateNewPostText = (text) => ({type: types.UPDATE_NEW_POST_TEXT, newText: text});
+export const setUserProfile = (userProfile) => ({type: types.SET_USER_PROFILE, userProfile});
 
 // Messages(Dialogs)
-const sendMessage = () => ({type: 'SEND_MESSAGE'});
-const updateNewMessageBody = (body) => ({type: 'UPDATE_NEW_MESSAGE_BODY', body});
+export const sendMessage = () => ({type: types.SEND_MESSAGE});
+export const updateNewMessageBody = (body) => ({type: types.UPDATE_NEW_MESSAGE_BODY, body});
 
 // Users
-const follow = (userID) => ({type: 'FOLLOW', userID});
-const unfollow = (userID) => ({type: 'UNFOLLOW', userID});
-const setUsers = (users) => ({type: 'SET_USERS', users});
+export const follow = (userID) => ({type: types.FOLLOW, userID});
+export const unfollow = (userID) => ({type: types.UNFOLLOW, userID});
+export const setUsers = (users) => ({type: types.SET_USERS, users});
 
 // Pagination
-const setTotalUsersCount = (totalUsersCount) => ({type: 'SET_TOTAL_USERS_COUNT', totalUsersCount});
-const setCurrentPage = (currentPage) => ({type: 'SET_CURRENT_PAGE', currentPage});
-const setNextPage = () => ({type: 'SET_NEXT_PAGE'});
-const setPrevPage = () => ({type: 'SET_PREV_PAGE'});
-const toogleFetching = (isFetching) => ({type: 'TOOGLE_FETCHING', isFetching});
+export const setTotalUsersCount = (totalUsersCount) => ({type: types.SET_TOTAL_USERS_COUNT, totalUsersCount});
+export const setCurrentPage = (currentPage) => ({type: types.SET_CURRENT_PAGE, currentPage});
+export const setNextPage = () => ({type: types.SET_NEXT_PAGE});
+export const setPrevPage = () => ({type: types.SET_PREV_PAGE});
+export const toogleFetching = (isFetching) => ({type: types.TOOGLE_FETCHING, isFetching});
 
-export {
-  addPost,
-  updateNewPostText,
-  setUserProfile,
-  sendMessage,
-  updateNewMessageBody,
-  follow,
-  unfollow,
-  setUsers,
-  setTotalUsersCount,
-  setCurrentPage,
-  setNextPage,
-  setPrevPage,
-  toogleFetching
-}
+// Auth
+export const setAuthUserData = (userId, email, login) => ({type: types.SET_USER_DATA, data: {userId, email, login}});

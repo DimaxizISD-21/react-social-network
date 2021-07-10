@@ -1,3 +1,5 @@
+import * as types from '../actionTypes';
+
 const initialState = {
   users: [],
   pageSize: 5,
@@ -8,43 +10,43 @@ const initialState = {
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'FOLLOW':
+    case types.FOLLOW:
       return {
         ...state,
         users: state.users.map(user => user.id === action.userID ? {...user, followed: true} : user)
       }
-    case 'UNFOLLOW':
+    case types.UNFOLLOW:
       return {
         ...state,
         users: state.users.map(user => user.id === action.userID ? {...user, followed: false} : user)
       }
 
-    case 'SET_USERS':
+    case types.SET_USERS:
       return {
         ...state,
         users: [...action.users]
       }
-    case 'SET_TOTAL_USERS_COUNT':
+    case types.SET_TOTAL_USERS_COUNT:
       return {
         ...state,
         totalUsersCount: action.totalUsersCount
       }
-    case 'SET_CURRENT_PAGE':
+    case types.SET_CURRENT_PAGE:
       return {
         ...state,
         currentPage: action.currentPage
       }
-    case 'SET_NEXT_PAGE':
+    case types.SET_NEXT_PAGE:
       return {
         ...state,
         currentPage: state.currentPage + 1
       }
-    case 'SET_PREV_PAGE':
+    case types.SET_PREV_PAGE:
       return {
         ...state,
         currentPage: state.currentPage === 1 ? state.currentPage = 1 : state.currentPage - 1
       }
-    case 'TOOGLE_FETCHING':
+    case types.TOOGLE_FETCHING:
       return {
         ...state,
         isFetching: state.isFetching = action.isFetching

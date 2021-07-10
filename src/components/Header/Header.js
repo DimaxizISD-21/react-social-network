@@ -1,13 +1,28 @@
-import { Link } from "react-router-dom";
-import logo from './sprout-social.svg';
-import s from './Header.module.css';
+import {useEffect} from "react";
+import {connect} from "react-redux";
+import {setAuthUserData} from "../../redux/actions";
+import axios from "axios";
+import HeaderView from "./HeaderView";
 
-const Header = () => {
-    return (
-        <header className={s.header}>
-          <Link to='/'><img src={logo} alt='logo'/></Link>
-        </header>
-    );
+const Header = ({setAuthUserData, login, isAuth}) => {
+  useEffect(() => {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
+      withCredentials: true
+    })
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          const {id, email, login} = response.data.data;
+          setAuthUserData(id, email, login)
+        }
+      })
+  }, [setAuthUserData])
+
+  return <HeaderView isAuth={isAuth} userLogin={login}/>
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  login: state.auth.login,
+  isAuth: state.auth.isAuth
+});
+
+export default connect(mapStateToProps, {setAuthUserData})(Header);

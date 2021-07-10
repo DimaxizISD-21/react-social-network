@@ -1,3 +1,5 @@
+import * as types from '../actionTypes';
+
 const initialState = {
   posts: [
     {id: 1, msg: 'Hi, how are you?', likesCount: 12},
@@ -9,7 +11,7 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD-POST':
+    case types.ADD_POST:
       const newPost = {
         id: 3,
         msg: state.newPostText,
@@ -20,12 +22,12 @@ const profileReducer = (state = initialState, action) => {
         posts: [...state.posts, newPost],
         newPostText: ''
       }
-    case 'UPDATE_NEW_POST_TEXT':
+    case types.UPDATE_NEW_POST_TEXT:
       return {
         ...state,
         newPostText: action.newText
       }
-    case 'SET_USER_PROFILE':
+    case types.SET_USER_PROFILE:
       return {
         ...state,
         userProfile: action.userProfile

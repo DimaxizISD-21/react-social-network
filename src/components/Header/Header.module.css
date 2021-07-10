@@ -1,9 +1,26 @@
 .header {
 	grid-area: header;
   	background-color: #F5F5F6;
+	padding: 10px;
  	align-self: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .header img {
   width: 230px;
+}
+
+.login {
+	font-weight: bold;
+	font-size: 16px;
+	color: #000;
+}
+
+.login a {
+	font-weight: bold;
+	font-size: 16px;
+	color: #000;
+	text-decoration: none;
 }

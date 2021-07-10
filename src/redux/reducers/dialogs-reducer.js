@@ -1,3 +1,5 @@
+import * as types from '../actionTypes';
+
 const initialState = {
   dialogs: [
     {
@@ -27,7 +29,7 @@ const initialState = {
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SEND_MESSAGE':
+    case types.SEND_MESSAGE:
       const message = {
         id: 5,
         msg: state.newMessageBody
@@ -38,7 +40,7 @@ const dialogsReducer = (state = initialState, action) => {
         messages: [...state.messages, message],
         newMessageBody: ''
       }
-    case 'UPDATE_NEW_MESSAGE_BODY':
+    case types.UPDATE_NEW_MESSAGE_BODY:
       return {
         ...state,
         newMessageBody: action.body
