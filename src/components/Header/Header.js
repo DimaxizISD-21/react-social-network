@@ -1,20 +1,17 @@
 import {useEffect} from "react";
 import {connect} from "react-redux";
 import {setAuthUserData} from "../../redux/actions";
-import axios from "axios";
+import {getAuthMe} from "../../api";
 import HeaderView from "./HeaderView";
 
 const Header = ({setAuthUserData, login, isAuth}) => {
   useEffect(() => {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-      withCredentials: true
+    getAuthMe().then(data => {
+      if (data.resultCode === 0) {
+        const {id, email, login} = data.data;
+        setAuthUserData(id, email, login)
+      }
     })
-      .then(response => {
-        if (response.data.resultCode === 0) {
-          const {id, email, login} = response.data.data;
-          setAuthUserData(id, email, login)
-        }
-      })
   }, [setAuthUserData])
 
   return <HeaderView isAuth={isAuth} userLogin={login}/>

@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {followUser, unfollowUser} from "../../../api";
 
 import avatarSvg from './avatar.svg';
 // 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png'
@@ -8,31 +8,20 @@ import s from './UserItem.module.css';
 const UserItem = ({userID, name, avatar, city, country, status, followed, follow, unfollow}) => {
 
   const handleFollow = () => {
-    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userID}`, {}, {
-      withCredentials: true,
-      headers: {
-        'API-KEY': 'eaa5af4c-0da2-4afe-b571-23b20aa4bfaf'
+    followUser(userID).then(response => {
+      debugger;
+      if (response.data.resultCode === 0) {
+        follow(userID)
       }
     })
-      .then(response => {
-        if (response.data.resultCode === 0) {
-          follow(userID)
-        }
-      })
   };
 
   const handleUnFollow = () => {
-    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userID}`, {
-      withCredentials: true,
-      headers: {
-        'API-KEY': 'eaa5af4c-0da2-4afe-b571-23b20aa4bfaf'
+    unfollowUser(userID).then(response => {
+      if (response.data.resultCode === 0) {
+        unfollow(userID)
       }
     })
-      .then(response => {
-        if (response.data.resultCode === 0) {
-          unfollow(userID)
-        }
-      })
   };
 
   return (
