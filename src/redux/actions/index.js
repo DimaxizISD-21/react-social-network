@@ -13,6 +13,11 @@ export const updateNewMessageBody = (body) => ({type: types.UPDATE_NEW_MESSAGE_B
 export const follow = (userID) => ({type: types.FOLLOW, userID});
 export const unfollow = (userID) => ({type: types.UNFOLLOW, userID});
 export const setUsers = (users) => ({type: types.SET_USERS, users});
+export const toogleIsFollowingProgress = (isFetching, userId) => ({
+  type: types.TOOGLE_IS_FOLLOWING_PROGRESS,
+  isFetching,
+  userId
+});
 
 // Pagination
 export const setTotalUsersCount = (totalUsersCount) => ({type: types.SET_TOTAL_USERS_COUNT, totalUsersCount});

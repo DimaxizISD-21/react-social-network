@@ -14,6 +14,8 @@ const UsersView = (props) => {
     setCurrentPage,
     setNextPage,
     setPrevPage,
+    isFollowingProgress,
+    toogleIsFollowingProgress
   } = props;
 
   return (
@@ -32,6 +34,8 @@ const UsersView = (props) => {
             followed={user.followed}
             follow={follow}
             unfollow={unfollow}
+            isFollowingProgress={isFollowingProgress}
+            toogleIsFollowingProgress={toogleIsFollowingProgress}
           />
         ))
       }

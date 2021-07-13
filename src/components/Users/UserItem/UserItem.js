@@ -5,22 +5,38 @@ import avatarSvg from './avatar.svg';
 // 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png'
 import s from './UserItem.module.css';
 
-const UserItem = ({userID, name, avatar, city, country, status, followed, follow, unfollow}) => {
+const UserItem = (props) => {
+
+  //  city, country,
+  const {
+    userID,
+    name,
+    avatar,
+    status,
+    followed,
+    follow,
+    unfollow,
+    isFollowingProgress,
+    toogleIsFollowingProgress
+  } = props;
 
   const handleFollow = () => {
+    toogleIsFollowingProgress(true, userID);
     followUser(userID).then(response => {
-      debugger;
       if (response.data.resultCode === 0) {
         follow(userID)
       }
+      toogleIsFollowingProgress(false, userID);
     })
   };
 
   const handleUnFollow = () => {
+    toogleIsFollowingProgress(true, userID);
     unfollowUser(userID).then(response => {
       if (response.data.resultCode === 0) {
         unfollow(userID)
       }
+      toogleIsFollowingProgress(false, userID);
     })
   };
 
@@ -33,11 +49,13 @@ const UserItem = ({userID, name, avatar, city, country, status, followed, follow
         {
           followed ?
             <button
+              disabled={isFollowingProgress.some(id => id === userID)}
               className={s.followed}
               onClick={handleUnFollow}
             >Unfollow</button>
             :
             <button
+              disabled={isFollowingProgress.some(id => id === userID)}
               className={s.followed}
               onClick={handleFollow}
             >Follow</button>

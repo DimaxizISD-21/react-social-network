@@ -18,6 +18,7 @@ export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const SET_NEXT_PAGE = 'SET_NEXT_PAGE';
 export const SET_PREV_PAGE = 'SET_PREV_PAGE';
 export const TOOGLE_FETCHING = 'TOOGLE_FETCHING';
+export const TOOGLE_IS_FOLLOWING_PROGRESS = 'TOOGLE_IS_FOLLOWING_PROGRESS';
 
 // Auth actionTypes
 export const SET_USER_DATA = 'SET_USER_DATA';

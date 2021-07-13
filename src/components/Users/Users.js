@@ -6,7 +6,8 @@ import {
   setCurrentPage,
   setNextPage,
   setPrevPage,
-  toogleFetching
+  toogleFetching,
+  toogleIsFollowingProgress
 } from '../../redux/actions';
 import {connect} from "react-redux";
 import {useEffect} from "react";
@@ -36,7 +37,8 @@ const mapStateToProps = (state) => {
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching
+    isFetching: state.usersPage.isFetching,
+    isFollowingProgress: state.usersPage.isFollowingProgress
   }
 };
 
@@ -48,7 +50,8 @@ const mapDispatchToProps = {
   setCurrentPage,
   setNextPage,
   setPrevPage,
-  toogleFetching
+  toogleFetching,
+  toogleIsFollowingProgress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

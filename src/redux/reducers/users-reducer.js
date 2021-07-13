@@ -5,7 +5,8 @@ const initialState = {
   pageSize: 5,
   totalUsersCount: 0,
   currentPage: 1,
-  isFetching: false
+  isFetching: false,
+  isFollowingProgress: []
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -50,6 +51,13 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: state.isFetching = action.isFetching
+      }
+    case types.TOOGLE_IS_FOLLOWING_PROGRESS:
+      return {
+        ...state,
+        isFollowingProgress: action.isFetching ?
+          [...state.isFollowingProgress, action.userId] :
+          state.isFollowingProgress.filter(id => id !== action.userId)
       }
     default:
       return state;
