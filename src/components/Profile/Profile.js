@@ -1,25 +1,18 @@
 import {useEffect, useRef} from "react";
-import axios from "axios";
 import {connect} from "react-redux";
 import ProfileView from "./ProfileView";
-import {setUserProfile} from "../../redux/actions";
+import {setUserProfileThunkCreator} from "../../redux/actions";
 import {withRouter} from 'react-router-dom'
 
 
-const Profile = ({ userProfile, setUserProfile, match }) => {
-  let userID =  useRef(match.params.userId);
+const Profile = ({userProfile, setUserProfile, match}) => {
+  let userID = useRef(match.params.userId);
 
   useEffect(() => {
-    if (!userID.current) {
-      userID.current = 2;
-    }
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID.current}`, {
-      withCredentials: true
-    })
-      .then(response => setUserProfile(response.data))
+    setUserProfile(userID.current);
   }, [setUserProfile]);
 
-  return <ProfileView profile={userProfile} />
+  return <ProfileView profile={userProfile}/>
 }
 
 const mapStateToProps = (state) => {
@@ -28,4 +21,6 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default withRouter(connect(mapStateToProps, {setUserProfile})(Profile));
+export default withRouter(connect(mapStateToProps, {
+  setUserProfile: setUserProfileThunkCreator
+})(Profile));

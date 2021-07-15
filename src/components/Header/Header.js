@@ -1,18 +1,12 @@
 import {useEffect} from "react";
 import {connect} from "react-redux";
-import {setAuthUserData} from "../../redux/actions";
-import {getAuthMe} from "../../api";
+import {getAuthMeThunkCreator} from "../../redux/actions";
 import HeaderView from "./HeaderView";
 
-const Header = ({setAuthUserData, login, isAuth}) => {
+const Header = ({getAuthMe, login, isAuth}) => {
   useEffect(() => {
-    getAuthMe().then(data => {
-      if (data.resultCode === 0) {
-        const {id, email, login} = data.data;
-        setAuthUserData(id, email, login)
-      }
-    })
-  }, [setAuthUserData])
+    getAuthMe()
+  }, [getAuthMe])
 
   return <HeaderView isAuth={isAuth} userLogin={login}/>
 }
@@ -22,4 +16,4 @@ const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth
 });
 
-export default connect(mapStateToProps, {setAuthUserData})(Header);
+export default connect(mapStateToProps, {getAuthMe: getAuthMeThunkCreator})(Header);

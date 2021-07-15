@@ -6,8 +6,6 @@ import s from "./Users.module.css";
 const UsersView = (props) => {
   const {
     users,
-    follow,
-    unfollow,
     totalUsersCount,
     pageSize,
     currentPage,
@@ -15,7 +13,8 @@ const UsersView = (props) => {
     setNextPage,
     setPrevPage,
     isFollowingProgress,
-    toogleIsFollowingProgress
+    followUser,
+    unfollowUser
   } = props;
 
   return (
@@ -32,10 +31,9 @@ const UsersView = (props) => {
             // country={user.location.country}
             status={user.status}
             followed={user.followed}
-            follow={follow}
-            unfollow={unfollow}
+            followUser={followUser}
+            unfollowUser={unfollowUser}
             isFollowingProgress={isFollowingProgress}
-            toogleIsFollowingProgress={toogleIsFollowingProgress}
           />
         ))
       }

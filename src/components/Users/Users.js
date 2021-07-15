@@ -1,32 +1,22 @@
 import {
-  follow,
-  unfollow,
-  setUsers,
-  setTotalUsersCount,
   setCurrentPage,
   setNextPage,
   setPrevPage,
-  toogleFetching,
-  toogleIsFollowingProgress
+  getUsersThunkCreator,
+  followUserThunkCreator,
+  unfollowUserThunkCreator
 } from '../../redux/actions';
 import {connect} from "react-redux";
 import {useEffect} from "react";
 import UsersView from "./UsersView";
 import Preloader from "../common/Preloader/Preloader";
-import {getUsers} from "../../api";
-
 
 const Users = (props) => {
-  const {setUsers, pageSize, currentPage, setTotalUsersCount, isFetching, toogleFetching} = props;
+  const {pageSize, currentPage, isFetching, getUsers} = props;
 
   useEffect(() => {
-    toogleFetching(true)
-    getUsers(currentPage, pageSize).then(data => {
-        toogleFetching(false)
-        setUsers(data.items);
-        setTotalUsersCount(data.totalCount);
-      })
-  }, [setUsers, setTotalUsersCount, currentPage, pageSize, toogleFetching]);
+    getUsers(currentPage, pageSize);
+  }, [getUsers, currentPage, pageSize])
 
   return isFetching ? <Preloader/> : <UsersView {...props}/>
 };
@@ -43,15 +33,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  follow,
-  unfollow,
-  setUsers,
-  setTotalUsersCount,
   setCurrentPage,
   setNextPage,
   setPrevPage,
-  toogleFetching,
-  toogleIsFollowingProgress
+  getUsers: getUsersThunkCreator,
+  followUser: followUserThunkCreator,
+  unfollowUser: unfollowUserThunkCreator
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

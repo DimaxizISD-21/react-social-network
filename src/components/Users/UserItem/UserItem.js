@@ -1,5 +1,4 @@
 import {NavLink} from "react-router-dom";
-import {followUser, unfollowUser} from "../../../api";
 
 import avatarSvg from './avatar.svg';
 // 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png'
@@ -14,30 +13,17 @@ const UserItem = (props) => {
     avatar,
     status,
     followed,
-    follow,
-    unfollow,
+    followUser,
+    unfollowUser,
     isFollowingProgress,
-    toogleIsFollowingProgress
   } = props;
 
   const handleFollow = () => {
-    toogleIsFollowingProgress(true, userID);
-    followUser(userID).then(response => {
-      if (response.data.resultCode === 0) {
-        follow(userID)
-      }
-      toogleIsFollowingProgress(false, userID);
-    })
+    followUser(userID);
   };
 
   const handleUnFollow = () => {
-    toogleIsFollowingProgress(true, userID);
-    unfollowUser(userID).then(response => {
-      if (response.data.resultCode === 0) {
-        unfollow(userID)
-      }
-      toogleIsFollowingProgress(false, userID);
-    })
+    unfollowUser(userID);
   };
 
   return (
