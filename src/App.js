@@ -7,6 +7,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Users from "./components/Users/Users";
+import Login from "./components/Login/Login";
 
 import './App.css';
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/profile/:userId?' render={() => <Profile />}/>
           <Route path='/messages' render={() => <Dialogs />}/>
           <Route exact path='/users' component={Users} />
+          <Route exact path='/login' component={Login} />
           <Route exact path='/news' component={News}/>
           <Route exact path='/music' component={Music}/>
           <Route exact path='/settings' component={Settings}/>

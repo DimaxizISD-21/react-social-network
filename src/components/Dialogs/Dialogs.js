@@ -1,38 +1,21 @@
-import DialogItem from "./DialogItem/DialogItem";
-import MessageItem from "./MessageItem/MessageItem";
-import MessageInput from "./MessageInput/MessageInput";
 import {connect} from "react-redux";
+import DialogsView from "./DialogsView";
+import {sendMessage, updateNewMessageBody} from "../../redux/actions";
 
-import s from './Dialogs.module.css'
-
-const Dialogs = ({ dialogs, messages }) => {
-  return (
-    <div className={s.dialogs}>
-      {/*<b>Dialogs</b>*/}
-      <div className={s.dialogsItems}>
-        {
-          dialogs.map(data => (
-            <DialogItem key={data.id} name={data.name} id={data.id} avatar={data.avatar}/>
-          ))
-        }
-      </div>
-      <div className={s.messagesItems}>
-        {
-          messages.map(data => (
-            <MessageItem key={data.id} msg={data.msg}/>
-          ))
-        }
-      </div>
-        <MessageInput />
-    </div>
-  );
+const Dialogs = (props) => {
+  return <DialogsView {...props}/>
 }
 
 const mapStateToProps = (state) => {
   return {
     dialogs: state.dialogsPage.dialogs,
-    messages: state.dialogsPage.messages
+    messages: state.dialogsPage.messages,
+    bodyText: state.dialogsPage.newMessageBody,
+    isAuth: state.auth.isAuth
   }
 };
 
-export default connect(mapStateToProps)(Dialogs);
+export default connect(mapStateToProps, {
+  sendMessage,
+  updateNewMessageBody
+})(Dialogs);

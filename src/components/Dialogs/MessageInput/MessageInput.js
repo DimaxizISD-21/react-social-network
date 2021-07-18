@@ -1,6 +1,3 @@
-import {sendMessage, updateNewMessageBody} from "../../../redux/actions";
-import {connect} from "react-redux";
-
 import s from './MessageInput.module.css';
 
 const MessageInput = ({ bodyText, sendMessage, updateNewMessageBody }) => {
@@ -27,15 +24,4 @@ const MessageInput = ({ bodyText, sendMessage, updateNewMessageBody }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    bodyText: state.dialogsPage.newMessageBody
-  }
-};
-
-const mapDispatchToProps = {
-  sendMessage,
-  updateNewMessageBody
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MessageInput);
+export default MessageInput;
