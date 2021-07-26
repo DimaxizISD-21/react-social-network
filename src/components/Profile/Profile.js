@@ -4,6 +4,7 @@ import ProfileView from "./ProfileView";
 import {setUserProfileThunkCreator} from "../../redux/actions";
 import {withRouter} from 'react-router-dom'
 import withAuthRedirect from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 const Profile = ({userProfile, setUserProfile, match}) => {
@@ -22,6 +23,10 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default withAuthRedirect(withRouter(connect(mapStateToProps, {
-  setUserProfile: setUserProfileThunkCreator
-})(Profile)));
+export default compose(
+  withAuthRedirect,
+  withRouter,
+  connect(mapStateToProps, {
+    setUserProfile: setUserProfileThunkCreator
+  })
+)(Profile);

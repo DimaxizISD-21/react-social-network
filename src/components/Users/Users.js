@@ -10,6 +10,8 @@ import {connect} from "react-redux";
 import {useEffect} from "react";
 import UsersView from "./UsersView";
 import Preloader from "../common/Preloader/Preloader";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 const Users = (props) => {
   const {pageSize, currentPage, isFetching, getUsers} = props;
@@ -41,4 +43,7 @@ const mapDispatchToProps = {
   unfollowUser: unfollowUserThunkCreator
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default compose(
+  withAuthRedirect,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Users);
