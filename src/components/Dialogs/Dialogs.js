@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import DialogsView from "./DialogsView";
 import {sendMessage, updateNewMessageBody} from "../../redux/actions";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 const Dialogs = (props) => {
   return <DialogsView {...props}/>
@@ -11,11 +12,10 @@ const mapStateToProps = (state) => {
     dialogs: state.dialogsPage.dialogs,
     messages: state.dialogsPage.messages,
     bodyText: state.dialogsPage.newMessageBody,
-    isAuth: state.auth.isAuth
   }
 };
 
-export default connect(mapStateToProps, {
+export default withAuthRedirect(connect(mapStateToProps, {
   sendMessage,
   updateNewMessageBody
-})(Dialogs);
+})(Dialogs));

@@ -3,25 +3,25 @@ import {connect} from "react-redux";
 import ProfileView from "./ProfileView";
 import {setUserProfileThunkCreator} from "../../redux/actions";
 import {withRouter} from 'react-router-dom'
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 
-const Profile = ({userProfile, setUserProfile, match, isAuth}) => {
+const Profile = ({userProfile, setUserProfile, match}) => {
   let userID = useRef(match.params.userId);
 
   useEffect(() => {
     setUserProfile(userID.current);
   }, [setUserProfile]);
 
-  return <ProfileView profile={userProfile} isAuth={isAuth}/>
+  return <ProfileView profile={userProfile} />
 }
 
 const mapStateToProps = (state) => {
   return {
     userProfile: state.profilePage.userProfile,
-    isAuth: state.auth.isAuth
   }
 };
 
-export default withRouter(connect(mapStateToProps, {
+export default withAuthRedirect(withRouter(connect(mapStateToProps, {
   setUserProfile: setUserProfileThunkCreator
-})(Profile));
+})(Profile)));

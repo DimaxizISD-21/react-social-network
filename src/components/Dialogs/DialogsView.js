@@ -1,16 +1,10 @@
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 import MessageInput from "./MessageInput/MessageInput";
-import {Redirect} from 'react-router-dom';
 
 import s from "./Dialogs.module.css";
 
-const DialogsView = ({ dialogs, messages, bodyText, sendMessage, updateNewMessageBody, isAuth }) => {
-
-  if (!isAuth) {
-    return <Redirect to={'/login'}/>
-  }
-
+const DialogsView = ({ dialogs, messages, bodyText, sendMessage, updateNewMessageBody }) => {
   return (
     <div className={s.dialogs}>
       {/*<b>Dialogs</b>*/}
