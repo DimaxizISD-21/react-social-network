@@ -35,6 +35,7 @@ export const setUserProfileThunkCreator = (userID) =>
   (dispatch) => {
     if (!userID) {
       userID = 2;
+      // userID = 18187;
     }
     new SocialAPI().getUserProfile(userID).then(data => {
       dispatch(setUserProfile(data));

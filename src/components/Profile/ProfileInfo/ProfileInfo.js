@@ -1,7 +1,17 @@
+import {useState} from "react";
 import avatarSvg from './avatar.svg';
+
 import s from './ProfileInfo.module.css';
 
 const ProfileInfo = ({fullName, about, photos, contacts, lookingForAJob}) => {
+
+  const [editMode, setEditMode] = useState(false);
+  const [profileStatus, setProfileStatus] = useState(about);
+
+  const changeProfileStatus = (e) => {
+    setProfileStatus(e.target.value);
+  };
+
   return (
     <div>
       <div>
@@ -15,7 +25,20 @@ const ProfileInfo = ({fullName, about, photos, contacts, lookingForAJob}) => {
           <img className={s.profileAvatar} src={photos != null ? photos : avatarSvg} alt="user"/>
         </div>
         <div className={s.profileFullname}>{fullName}</div>
-        <div>{about}</div>
+        <div className={s.profileStatus}>
+          {
+            !editMode ? (<div onDoubleClick={() => setEditMode(true)}>{profileStatus}</div>) :
+              (
+                <input
+                  type="text"
+                  value={profileStatus}
+                  onChange={(e) => changeProfileStatus(e)}
+                  autoFocus
+                  onBlur={() => setEditMode(false)}
+                />
+              )
+          }
+        </div>
         <div className={s.profileDescription}>
           <div className={s.profileContacts}>
             <div className={s.center}><b>Мои контакты:</b></div>
